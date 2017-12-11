@@ -1,0 +1,31 @@
+<div class="row form-group panel panel-default" *ngFor="let host of hostList; let i = index">
+    <div class="col-xs-12 form-group panel-heading">
+        <div class="row">
+            <div class="col-xs-5">
+                {{host.hostname}}
+            </div>
+            <div class="col-xs-5">
+                {{host.lookback}}
+            </div>
+            <div class="col-xs-2">
+                <button class="btn btn-danger " (click)="removeHost(host)"><i class="glyphicon glyphicon-remove"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-12 form-group" *ngFor="let c_host of host.childHost;let index = index ">
+            <div class="row">
+                <div class="col-xs-5">
+                    {{c_host.hostname}}
+                </div>
+                <div class="col-xs-5">
+                    {{c_host.lookback}}
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-danger float-right" (click)="removeChildHost(host,index)"><i class="glyphicon glyphicon-remove"></i></button>
+                </div>
+            </div>
+        </div>
+        <add-host (onNewAdd)="onNewAdd($event)" [index]="i"></add-host>
+    </div>
+</div>
